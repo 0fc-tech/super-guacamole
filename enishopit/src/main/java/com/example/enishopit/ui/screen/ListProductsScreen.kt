@@ -2,6 +2,7 @@ package com.example.enishopit.ui.screen
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -21,7 +22,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import coil.compose.AsyncImage
 import com.example.enishopit.vm.ListProductsVM
+import com.example.enishopit.ui.theme.Typography
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -50,10 +53,16 @@ fun ListProductsScreen(
             columns = GridCells.Adaptive(minSize = 128.dp)
         ) {
             items(vm.fetchProducts()) { product ->
-                Card(onClick =  {
-                    onProductClick(product.id)
-                }){
+                Column {
+                    Card(onClick = {
+                        onProductClick(product.id)
+                    }) {
+                        AsyncImage(model = product.urlImage,
+                            contentDescription =product.title,
+                            modifier=Modifier.padding(28.dp))
+                    }
                     Text(product.title)
+                    Text("${product.price}€",style=Typography.labelLarge)
                 }
             }
         }

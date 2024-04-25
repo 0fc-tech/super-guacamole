@@ -17,6 +17,15 @@
       <entry key="mod4loginscreen">
         <State />
       </entry>
+      <entry key="mod6datastore">
+        <State />
+      </entry>
+      <entry key="mod6testroom">
+        <State />
+      </entry>
+      <entry key="writeAndReadYourEntity()">
+        <State />
+      </entry>
     </value>
   </component>
 </project>

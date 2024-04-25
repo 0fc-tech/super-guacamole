@@ -16,6 +16,8 @@
             <option value="$PROJECT_DIR$/mod3compose" />
             <option value="$PROJECT_DIR$/mod4counter" />
             <option value="$PROJECT_DIR$/mod4loginscreen" />
+            <option value="$PROJECT_DIR$/mod6datastore" />
+            <option value="$PROJECT_DIR$/mod6testroom" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />
