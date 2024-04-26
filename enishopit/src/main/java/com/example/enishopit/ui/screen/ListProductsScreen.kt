@@ -19,6 +19,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -29,9 +31,10 @@ import com.example.enishopit.ui.theme.Typography
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ListProductsScreen(
-    vm : ListProductsVM =viewModel(),
+    vm : ListProductsVM =viewModel(factory = ListProductsVM.Factory),
     onProductClick : (idProduct : Long)->Unit)
 {
+    val listProductsState by vm.fetchProducts().collectAsState(initial = emptyList())
     Scaffold(
         topBar = {
             TopAppBar(
@@ -52,7 +55,7 @@ fun ListProductsScreen(
             contentPadding = PaddingValues(8.dp),
             columns = GridCells.Adaptive(minSize = 128.dp)
         ) {
-            items(vm.fetchProducts()) { product ->
+            items(listProductsState) { product ->
                 Column {
                     Card(onClick = {
                         onProductClick(product.id)
